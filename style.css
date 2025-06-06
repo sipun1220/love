@@ -1,0 +1,338 @@
+ @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap');
+
+  :root {
+    --primary-color: #ff6b81;
+    --secondary-color: #ffafcc;
+    --background-gradient: linear-gradient(135deg, #ffafcc 0%, #ffe6f0 100%);
+    --heart-color: #ff4b5c;
+    --text-color-dark: #4a2a38;
+    --glass-bg: rgba(255, 255, 255, 0.25);
+    --glass-blur: 15px;
+    --shadow-glow: 0 0 20px var(--heart-color);
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--background-gradient);
+    min-height: 100vh;
+    color: var(--text-color-dark);
+    position: relative;
+    padding: 100px 20px 80px; /* padding top for header, bottom for footer */
+    line-height: 1.5;
+  }
+
+  /* Header styling */
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    box-shadow: 0 4px 15px rgba(255, 75, 92, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.8rem;
+    color: var(--heart-color);
+    text-shadow:
+      0 0 8px #4bff5d,
+      0 0 12px #4bffab,
+      0 0 18px #33d951;
+    user-select: none;
+  }
+
+  /* Footer styling */
+  footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    box-shadow: 0 -4px 12px rgba(255, 75, 92, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    letter-spacing: 0.08em;
+    user-select: none;
+  }
+
+  /* Vignette overlay for focus */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    background: radial-gradient(circle at center, transparent 50%, rgba(0,0,0,0.15) 90%);
+    z-index: 0;
+  }
+
+  /* Swirling background animation */
+  body::after {
+    content: "";
+    position: fixed;
+    top: -20%;
+    left: -20%;
+    width: 140%;
+    height: 140%;
+    background: radial-gradient(circle at center, rgba(255, 107, 129, 0.25) 0%, transparent 70%),
+                conic-gradient(from 0deg, #ffafcc 0deg, #ffe6f0 90deg, #ffafcc 180deg, #ffe6f0 270deg, #ffafcc 360deg);
+    filter: blur(80px);
+    animation: swirl 40s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  @keyframes swirl {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* Starry background container */
+  .stars {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    overflow: visible;
+    z-index: 0;
+  }
+  .star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    box-shadow: 0 0 6px 2px white;
+    animation: twinkle ease-in-out infinite alternate;
+  }
+  .star.small {
+    width: 2px;
+    height: 2px;
+    animation-duration: 2s;
+  }
+  .star.medium {
+    width: 3.5px;
+    height: 3.5px;
+    animation-duration: 3.5s;
+  }
+  .star.large {
+    width: 5px;
+    height: 5px;
+    animation-duration: 4.5s;
+  }
+  @keyframes twinkle {
+    0% { opacity: 0.3; box-shadow: 0 0 4px 1px white; }
+    50% { opacity: 1; box-shadow: 0 0 10px 3px white; }
+    100% { opacity: 0.3; box-shadow: 0 0 4px 1px white; }
+  }
+
+  /* Hearts container fixed */
+  .hearts-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: visible;
+    z-index: 0;
+  }
+  .heart {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: var(--heart-color);
+    transform: rotate(-45deg);
+    animation: floatUp 6s linear infinite, shimmer 2.5s ease-in-out infinite;
+    opacity: 0.8;
+    border-radius: 15px 15px 0 0;
+    filter: drop-shadow(0 0 3px #ff3b4b);
+  }
+  .heart:before,
+  .heart:after {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: var(--heart-color);
+    border-radius: 50%;
+  }
+  .heart:before {
+    top: -15px;
+    left: 0;
+  }
+  .heart:after {
+    left: 15px;
+    top: 0;
+  }
+  @keyframes shimmer {
+    0%,100% { filter: drop-shadow(0 0 3px #ff3b4b); }
+    50% { filter: drop-shadow(0 0 10px #ff6b81); }
+  }
+  @keyframes floatUp {
+    0% {
+      transform: translateY(0) rotate(-45deg);
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateY(-250px) rotate(-45deg);
+      opacity: 0;
+    }
+  }
+  .heart:nth-child(1) {
+    left: 20%;
+    animation-delay: 0s;
+    animation-duration: 5s;
+  }
+  .heart:nth-child(2) {
+    left: 40%;
+    animation-delay: 1.5s;
+    animation-duration: 6s;
+  }
+  .heart:nth-child(3) {
+    left: 60%;
+    animation-delay: 3s;
+    animation-duration: 4.5s;
+  }
+  .heart:nth-child(4) {
+    left: 80%;
+    animation-delay: 4.5s;
+    animation-duration: 5.5s;
+  }
+  .heart:nth-child(5) {
+    left: 50%;
+    animation-delay: 6s;
+    animation-duration: 7s;
+  }
+
+  /* Container sections styling */
+  section {
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    background: var(--glass-bg);
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(255, 75, 92, 0.3);
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 40px 30px 50px 30px;
+    color: var(--text-color-dark);
+    position: relative;
+    z-index: 10;
+    transition: transform 0.3s ease;
+  }
+  section:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 35px rgba(255, 75, 92, 0.5);
+  }
+
+  h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 4rem;
+    color: var(--heart-color);
+    margin-bottom: 15px;
+    text-shadow:
+      0 0 8px #4bff4e,
+      0 0 12px #42e16a,
+      0 0 18px #3bde5c;
+    position: relative;
+  }
+  h1::before, h1::after {
+    content: "✦";
+    position: absolute;
+    font-size: 1.6rem;
+    color: var(--heart-color);
+    opacity: 0.7;
+    animation: sparkle 3s infinite ease-in-out alternate;
+  }
+  h1::before {
+    top: -15px;
+    left: -25px;
+    animation-delay: 0s;
+  }
+  h1::after {
+    bottom: -15px;
+    right: -25px;
+    animation-delay: 1.5s;
+  }
+
+  @keyframes sparkle {
+    0% { opacity: 0.7; transform: scale(1) rotate(0deg); }
+    50% { opacity: 1; transform: scale(1.3) rotate(20deg); }
+    100% { opacity: 0.7; transform: scale(1) rotate(0deg); }
+  }
+
+  .subtitle {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    letter-spacing: 0.08em;
+  }
+  .message {
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.6;
+  }
+
+  .btn-love {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--heart-color);
+    color: white;
+    border: none;
+    padding: 14px 45px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 50px;
+    box-shadow: 0 0 20px var(--heart-color);
+    cursor: pointer;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 25px;
+  }
+  .btn-love:hover {
+    background: #ff3b4b;
+    box-shadow: 0 0 30px #ff3b4b;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 3rem;
+    }
+    .message {
+      font-size: 1.1rem;
+    }
+    section {
+      margin: 30px 10px;
+      padding: 30px 20px 40px 20px;
+      max-width: 95vw;
+    }
+    header {
+      font-size: 2rem;
+      height: 60px;
+      padding: 0 10px;
+    }
+    footer {
+      font-size: 0.9rem;
+      height: 50px;
+      padding: 0 10px;
+    }
+    body {
+      padding: 80px 10px 70px;
+    }
+  }
